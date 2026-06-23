@@ -6,10 +6,31 @@ mode: Rule
 log-level: info
 ipv6: false
 
+dns:
+  enable: true
+  nameserver:
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+
 proxies:
-  - name: HK-Worker
+  - name: HK-REALITY
     type: vless
-    server: hk-proxy.wl77vv-4f7.workers.dev
+    server: 46.20.109.127
+    port: 8443
+    uuid: 07c1c058-6283-4634-92d7-59d9d17e7c4a
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.microsoft.com
+    reality-opts:
+      public-key: xmDm2zaq7HSJuSl3NvLF4am-bp613jKuiYIWnb5ZvS4
+      short-id: 9b1d7978d521b421
+    client-fingerprint: chrome
+
+  - name: HK-CDN
+    type: vless
+    server: nan77a.com
     port: 443
     uuid: 07c1c058-6283-4634-92d7-59d9d17e7c4a
     network: ws
@@ -18,13 +39,14 @@ proxies:
     ws-path: /ws
     ws-headers:
       Host: nan77a.com
-    servername: hk-proxy.wl77vv-4f7.workers.dev
+    servername: nan77a.com
 
 proxy-groups:
   - name: Proxy
     type: select
     proxies:
-      - HK-Worker
+      - HK-REALITY
+      - HK-CDN
       - DIRECT
 
 rules:
