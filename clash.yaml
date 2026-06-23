@@ -1,0 +1,39 @@
+# Hong Kong Proxy
+port: 7890
+socks-port: 7891
+mixed-port: 7892
+allow-lan: true
+mode: Rule
+log-level: info
+ipv6: false
+
+dns:
+  enable: true
+  nameserver:
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+
+proxies:
+  - name: HK-CDN
+    type: vless
+    server: nan77a.com
+    port: 443
+    uuid: 07c1c058-6283-4634-92d7-59d9d17e7c4a
+    network: ws
+    tls: true
+    udp: true
+    ws-path: /ws
+    ws-headers:
+      Host: nan77a.com
+    servername: nan77a.com
+
+proxy-groups:
+  - name: Proxy
+    type: select
+    proxies:
+      - HK-CDN
+      - DIRECT
+
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxy
