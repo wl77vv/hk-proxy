@@ -6,12 +6,6 @@ mode: Rule
 log-level: info
 ipv6: false
 
-dns:
-  enable: true
-  nameserver:
-    - https://1.1.1.1/dns-query
-    - https://dns.google/dns-query
-
 proxies:
   - name: HK-Hy2
     type: hysteria2
@@ -25,27 +19,11 @@ proxies:
     down: 200
     up: 30
 
-  - name: HK-REALITY
-    type: vless
-    server: 46.20.109.127
-    port: 8443
-    uuid: 07c1c058-6283-4634-92d7-59d9d17e7c4a
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.microsoft.com
-    reality-opts:
-      public-key: xmDm2zaq7HSJuSl3NvLF4am-bp613jKuiYIWnb5ZvS4
-      short-id: 9b1d7978d521b421
-    client-fingerprint: chrome
-
 proxy-groups:
   - name: Proxy
     type: select
     proxies:
       - HK-Hy2
-      - HK-REALITY
       - DIRECT
 
 rules:
