@@ -13,6 +13,18 @@ dns:
     - https://dns.google/dns-query
 
 proxies:
+  - name: HK-Hy2
+    type: hysteria2
+    server: 46.20.109.127
+    port: 26284
+    password: 9tjiNjZCO3Ipc7fb
+    sni: hk.wap.ac
+    skip-cert-verify: true
+    alpn:
+      - h3
+    down: 200
+    up: 30
+
   - name: HK-REALITY
     type: vless
     server: 46.20.109.127
@@ -28,25 +40,12 @@ proxies:
       short-id: 9b1d7978d521b421
     client-fingerprint: chrome
 
-  - name: HK-CDN
-    type: vless
-    server: nan77a.com
-    port: 443
-    uuid: 07c1c058-6283-4634-92d7-59d9d17e7c4a
-    network: ws
-    tls: true
-    udp: true
-    ws-path: /ws
-    ws-headers:
-      Host: nan77a.com
-    servername: nan77a.com
-
 proxy-groups:
   - name: Proxy
     type: select
     proxies:
+      - HK-Hy2
       - HK-REALITY
-      - HK-CDN
       - DIRECT
 
 rules:
