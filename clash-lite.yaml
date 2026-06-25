@@ -165,17 +165,6 @@ rule-providers:
     path: ./rule_providers/fake-ip-filter.mrs
     url: "https://cdn.jsdelivr.net/gh/DustinWin/ruleset_geodata@mihomo-ruleset/fakeip-filter.mrs"
 
-proxy-providers:
-  provider2:
-    type: http
-    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
-    path: ./proxies/provider2.yaml
-    interval: 3600
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 900
-
 proxies:
   - name: "HK-SS2022"
     type: ss
