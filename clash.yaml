@@ -185,7 +185,7 @@ proxies:
     flow: xtls-rprx-vision
     tls: true
     servername: www.microsoft.com
-    reality-opts:
+    reality:
       public-key: xmDm2zaq7HSJuSl3NvLF4am-bp613jKuiYIWnb5ZvS4
       short-id: 9b1d7978d521b421
     client-fingerprint: chrome
