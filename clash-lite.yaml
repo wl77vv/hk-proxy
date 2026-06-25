@@ -199,6 +199,24 @@ proxies:
     password: "3RMlobTdMoSWAMcuCR3DfdqaCTzNHds9JIBdIYajgkE="
     udp: true
 
+  - name: "HK-TUIC"
+    type: tuic
+    server: 46.20.109.127
+    port: 443
+    token: 9ffc0c63-5e47-479a-b749-45d67f84fb66:VzyadjcsYDAhQE3m
+    congestion-controller: bbr
+    alpn: [h3]
+    skip-cert-verify: true
+    udp: true
+
+  - name: "HK-HY2"
+    type: hysteria2
+    server: 46.20.109.127
+    port: 26284
+    password: "9tjiNjZCO3Ipc7fb"
+    skip-cert-verify: true
+    udp: true
+
 proxy-groups:
   - name: 选择节点
     type: select
