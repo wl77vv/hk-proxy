@@ -1,40 +1,6 @@
 {
   "outbounds": [
     {
-      "type": "vless",
-      "tag": "HK-REALITY",
-      "server": "46.20.109.127",
-      "server_port": 443,
-      "uuid": "07c1c058-6283-4634-92d7-59d9d17e7c4a",
-      "flow": "xtls-rprx-vision",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.microsoft.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "xmDm2zaq7HSJuSl3NvLF4am-bp613jKuiYIWnb5ZvS4",
-          "short_id": "9b1d7978d521b421"
-        }
-      }
-    },
-    {
-      "type": "tuic",
-      "tag": "HK-TUIC",
-      "server": "46.20.109.127",
-      "server_port": 443,
-      "uuid": "9ffc0c63-5e47-479a-b749-45d67f84fb66",
-      "password": "VzyadjcsYDAhQE3m",
-      "congestion_control": "bbr",
-      "tls": {
-        "enabled": true,
-        "insecure": true
-      }
-    },
-    {
       "type": "shadowsocks",
       "tag": "HK-SS2022",
       "server": "46.20.109.127",
