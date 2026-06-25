@@ -166,15 +166,6 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/DustinWin/ruleset_geodata@mihomo-ruleset/fakeip-filter.mrs"
 # ========== 代理提供者 ==========
 proxy-providers:
-  provider1:
-    type: http
-    url: "https://798465.xueshanlink.com/api/xueshanlink/c5af2af9a4ba229e43e380dcc9d19111"
-    path: ./proxies/provider1.yaml
-    interval: 3600
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 900
   provider2:
     type: http
     url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
