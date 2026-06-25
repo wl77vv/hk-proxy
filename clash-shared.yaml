@@ -164,8 +164,6 @@ rule-providers:
     format: mrs
     path: ./rule_providers/fake-ip-filter.mrs
     url: "https://cdn.jsdelivr.net/gh/DustinWin/ruleset_geodata@mihomo-ruleset/fakeip-filter.mrs"
-# ========== 代理提供者 ==========
-proxy-providers:
 proxies:
   - name: "HK-REALITY"
     type: vless
