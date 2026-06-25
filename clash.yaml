@@ -299,7 +299,6 @@ dns:
       - 240.0.0.0/4
       - 0.0.0.0/32
   fake-ip-filter: ['rule-set:fakeip-filter']
-  listen: 0.0.0.0:1053
 # ========== 统一规则路由表 (按中国大陆网络逻辑排序) ==========
 rules:
   - RULE-SET,Leakblock,选择节点
@@ -407,11 +406,6 @@ rules:
   - GEOIP,CN,DIRECT
   - MATCH,漏网之鱼
 # ========== 核心及插件基础配置 ==========
-cmfa-plugin:
-  mode: tproxy
-  dashboard: zashboard
-  mosdns_enable: false
-tproxy-port: 7893
 external-controller: 0.0.0.0:7788
 secret: "123456"
 external-ui: WebUI/zashboard
@@ -424,7 +418,7 @@ geodata-mode: true
 find-process-mode: "off"
 ntp:
   enable: true
-  write-to-system: true
+  write-to-system: false
   server: time.apple.com
   port: 123
   interval: 30
