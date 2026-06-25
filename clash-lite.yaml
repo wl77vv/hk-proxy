@@ -414,8 +414,7 @@ rules:
   - GEOIP,CN,DIRECT
   - MATCH,漏网之鱼
 
-allow-lan: true
-mixed-port: 7890
+allow-lan: false
 ntp:
   enable: true
   write-to-system: false
