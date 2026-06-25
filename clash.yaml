@@ -198,8 +198,7 @@ proxies:
     type: tuic
     server: 46.20.109.127
     port: 443
-    uuid: 9ffc0c63-5e47-479a-b749-45d67f84fb66
-    password: VzyadjcsYDAhQE3m
+    token: 9ffc0c63-5e47-479a-b749-45d67f84fb66:VzyadjcsYDAhQE3m
     congestion-controller: bbr
     alpn: ['h3']
     skip-cert-verify: true
