@@ -419,21 +419,11 @@ rules:
   - GEOIP,CN,DIRECT
   - MATCH,漏网之鱼
 # ========== 核心及插件基础配置 ==========
-cmfa-plugin:
-  mode: tproxy
-  dashboard: zashboard
-  mosdns_enable: false
-tproxy-port: 7893
-external-controller: 0.0.0.0:7788
-secret: "123456"
-external-ui: WebUI/zashboard
-external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
-allow-lan: true
-mixed-port: 7890
+allow-lan: false
 keep-alive-interval: 15
 keep-alive-idle: 600
 geodata-mode: true
-find-process-mode: "off"
+find-process-mode: "always"
 ntp:
   enable: true
   write-to-system: false
