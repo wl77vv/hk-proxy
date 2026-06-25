@@ -1,0 +1,22 @@
+proxies:
+  - name: "HK-REALITY"
+    type: vless
+    server: 46.20.109.127
+    port: 443
+    uuid: 07c1c058-6283-4634-92d7-59d9d17e7c4a
+    flow: xtls-rprx-vision
+    tls: true
+    servername: www.microsoft.com
+    reality-opts:
+      public-key: xmDm2zaq7HSJuSl3NvLF4am-bp613jKuiYIWnb5ZvS4
+      short-id: 9b1d7978d521b421
+    client-fingerprint: chrome
+    udp: true
+
+  - name: "HK-SS2022"
+    type: ss
+    server: 46.20.109.127
+    port: 18388
+    cipher: "2022-blake3-aes-256-gcm"
+    password: "3RMlobTdMoSWAMcuCR3DfdqaCTzNHds9JIBdIYajgkE="
+    udp: true
