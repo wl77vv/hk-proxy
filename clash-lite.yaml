@@ -215,9 +215,8 @@ proxy-groups:
   - name: Netflix&Disney
     type: select
     proxies:
-      - 选择节点
-    include-all: true
-    filter: "(?i)HK|港"
+      - HK-SS2022
+      - HK-HY2
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Netflix_b.png"
   - name: 金融券商
     type: select
