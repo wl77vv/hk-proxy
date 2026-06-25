@@ -247,7 +247,7 @@ proxy-groups:
     proxies:
       - 选择节点
     include-all: true
-    filter: "(?i)HK|港"
+    filter: "(?i)HK|港|TW|台|US|美|JP|日|SG|新"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Netflix_b.png"
   - name: 金融券商
     type: select
@@ -269,7 +269,7 @@ proxy-groups:
       - DIRECT
       - 选择节点
     include-all: true
-    filter: "(?i)HK|港"
+    filter: "(?i)HK|港|TW|台|US|美|JP|日|SG|新"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Bank.png"
   - name: 国内网站
     type: select
