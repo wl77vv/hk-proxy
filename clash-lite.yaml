@@ -307,7 +307,6 @@ dns:
       - 240.0.0.0/4
       - 0.0.0.0/32
   fake-ip-filter: ['rule-set:fakeip-filter']
-  listen: 0.0.0.0:1053
 
 rules:
   - RULE-SET,Leakblock,选择节点
@@ -419,7 +418,7 @@ allow-lan: true
 mixed-port: 7890
 ntp:
   enable: true
-  write-to-system: true
+  write-to-system: false
   server: time.apple.com
   port: 123
   interval: 30
