@@ -165,6 +165,18 @@ rule-providers:
     path: ./rule_providers/fake-ip-filter.mrs
     url: "https://cdn.jsdelivr.net/gh/DustinWin/ruleset_geodata@mihomo-ruleset/fakeip-filter.mrs"
 
+# ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
 proxies:
   - name: "HK-SS2022"
     type: ss
@@ -189,33 +201,93 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Server.png"
   - name: AIGPT
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - 选择节点
     include-all: true
     filter: "(?i)SG|新|TW|台|JP|日|US|美"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/AI.png"
   - name: Bahamut
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - 选择节点
     include-all: true
     filter: "(?i)HK|港|TW|台"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Bahamut_i.png"
   - name: Netflix&Disney
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - HK-SS2022
       - HK-HY2
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Netflix_b.png"
   - name: 金融券商
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - DIRECT
       - 选择节点
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Bank.png"
   - name: Steam login
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - DIRECT
       - 选择节点
     include-all: true
@@ -223,7 +295,19 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Steam.png"
   - name: 港卡直连
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - DIRECT
       - 选择节点
     include-all: true
@@ -231,19 +315,55 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Bank.png"
   - name: 国内网站
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - DIRECT
       - 选择节点
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Location.png"
   - name: 拦截广告
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - PASS
       - REJECT
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/AdblockPlus_2.png"
   - name: 漏网之鱼
     type: select
-    proxies:
+    # ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+proxies:
       - 选择节点
       - DIRECT
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Dolphin.png"
