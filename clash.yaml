@@ -191,6 +191,17 @@ proxies:
     password: "9tjiNjZCO3Ipc7fb"
     skip-cert-verify: true
     udp: true
+  - name: "JP-Tokyo"
+    type: vless
+    server: tokyo.nan77a.com
+    port: 443
+    uuid: "594b7e7e-9452-4902-a15d-59a96ee8df5d"
+    tls: true
+    network: ws
+    ws-opts:
+      path: "/"
+    client-fingerprint: chrome
+    udp: true
 # ========== 策略组 ==========
 proxy-groups:
   - name: 选择节点
@@ -216,6 +227,7 @@ proxy-groups:
     proxies:
       - HK-SS2022
       - HK-HY2
+      - JP-Tokyo
       - 选择节点
     include-all: true
     filter: "(?i)HK|港|TW|台|US|美|JP|日|SG|新"
