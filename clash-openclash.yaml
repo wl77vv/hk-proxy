@@ -1,0 +1,241 @@
+# ============================================================
+# Clash 配置 — OpenClash 兼容版
+# ============================================================
+
+mode: rule
+unified-delay: true
+tcp-concurrent: true
+log-level: info
+
+# ========== 规则集定义 ==========
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.txt
+    interval: 86400
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.txt
+    interval: 86400
+  apple:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.txt
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ./ruleset/google.txt
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.txt
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.txt
+    interval: 86400
+  private:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.txt
+    interval: 86400
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.txt
+    interval: 86400
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.txt
+    interval: 86400
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.txt
+    interval: 86400
+  applications:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: ./ruleset/applications.txt
+    interval: 86400
+  iAI:
+    type: http
+    behavior: domain
+    path: ./rules/AI.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    interval: 86400
+  iNetflix:
+    type: http
+    behavior: domain
+    path: ./rules/Netflix.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    interval: 86400
+  iDisney:
+    type: http
+    behavior: domain
+    path: ./rules/Disney.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    interval: 86400
+  cnip:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.txt
+    interval: 86400
+  iBahamut:
+    type: http
+    behavior: domain
+    path: ./rules/Bahamut.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    interval: 86400
+
+# ========== 代理提供者 ==========
+proxy-providers:
+  provider2:
+    type: http
+    url: "https://wl77vv.ccwu.cc/sub?token=0c29e8827bddba072155bd36ed88b6b1&clash"
+    path: ./proxies/provider2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 900
+
+# ========== 代理节点 ==========
+proxies:
+  - name: "HK-SS2022"
+    type: ss
+    server: 46.20.109.127
+    port: 18388
+    cipher: "2022-blake3-aes-256-gcm"
+    password: "3RMlobTdMoSWAMcuCR3DfdqaCTzNHds9JIBdIYajgkE="
+    udp: true
+  - name: "HK-HY2"
+    type: hysteria2
+    server: 46.20.109.127
+    port: 26284
+    password: "9tjiNjZCO3Ipc7fb"
+    skip-cert-verify: true
+    udp: true
+  - name: "JP-Tokyo"
+    type: vless
+    server: tokyo.nan77a.com
+    port: 443
+    uuid: "594b7e7e-9452-4902-a15d-59a96ee8df5d"
+    tls: true
+    network: ws
+    ws-opts:
+      path: "/"
+    udp: true
+
+# ========== 策略组 ==========
+proxy-groups:
+  - name: 选择节点
+    type: select
+    proxies:
+      - HK-SS2022
+      - HK-HY2
+      - JP-Tokyo
+    use:
+      - provider2
+  - name: Netflix&Disney
+    type: select
+    proxies:
+      - HK-SS2022
+      - HK-HY2
+      - JP-Tokyo
+      - 选择节点
+    use:
+      - provider2
+  - name: 金融券商
+    type: select
+    proxies:
+      - DIRECT
+      - 选择节点
+  - name: 国内网站
+    type: select
+    proxies:
+      - DIRECT
+      - 选择节点
+  - name: 漏网之鱼
+    type: select
+    proxies:
+      - 选择节点
+      - DIRECT
+
+# ========== DNS ==========
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.0/16
+  listen: 0.0.0.0:1053
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fallback:
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+  fallback-filter:
+    geoip-code: CN
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - '+.local'
+
+# ========== 规则 ==========
+rules:
+  - DOMAIN-SUFFIX,deepseek.com,DIRECT
+  - DOMAIN-SUFFIX,wechat.com,DIRECT
+  - DOMAIN-SUFFIX,whatsapp.com,选择节点
+  - DOMAIN-SUFFIX,githubcopilot.com,选择节点
+  - DOMAIN-SUFFIX,claude.ai,选择节点
+  - DOMAIN-SUFFIX,openai.com,选择节点
+  - DOMAIN-SUFFIX,chatgpt.com,选择节点
+  - DOMAIN-SUFFIX,netflix.com,Netflix&Disney
+  - DOMAIN-SUFFIX,netflix.net,Netflix&Disney
+  - DOMAIN-SUFFIX,nflxvideo.net,Netflix&Disney
+  - DOMAIN-SUFFIX,disney.com,Netflix&Disney
+  - DOMAIN-SUFFIX,disneyplus.com,Netflix&Disney
+  - DOMAIN-SUFFIX,bahamut.com.tw,选择节点
+  - DOMAIN-SUFFIX,revolut.com,金融券商
+  - DOMAIN-SUFFIX,binance.com,金融券商
+  - DOMAIN-SUFFIX,okx.com,金融券商
+  - DOMAIN-SUFFIX,bybit.com,金融券商
+  - DOMAIN-SUFFIX,coinbase.com,金融券商
+  - DOMAIN-SUFFIX,microsoft.com,选择节点
+  - DOMAIN-SUFFIX,office.com,选择节点
+  - RULE-SET,proxy,选择节点
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,cnip,DIRECT
+  - MATCH,漏网之鱼
+
+# ========== 基础配置 ==========
+mixed-port: 7890
+allow-lan: true
+external-controller: 0.0.0.0:7788
+secret: "123456"
