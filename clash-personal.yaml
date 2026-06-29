@@ -168,7 +168,7 @@ rule-providers:
 proxy-providers:
   provider1:
     type: http
-    url: "https://798465.xueshanlink.com/api/xueshanlink/c5af2af9a4ba229e43e380dcc9d19111"
+    url: "https://36494.xueshanlink.com/api/xueshanlink/cd0807cc7c930fdc81ac2ef3d6683b6e"
     path: ./proxies/provider1.yaml
     interval: 3600
     health-check:
