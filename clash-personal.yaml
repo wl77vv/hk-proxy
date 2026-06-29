@@ -197,7 +197,7 @@ proxies:
     type: hysteria2
     server: 46.20.109.127
     port: 26284
-    password: "9tjiNjZCO3Ipc7fb"
+    password: "u2HmFoSTnaYyUZBF"
     skip-cert-verify: true
     udp: true
   - name: "JP-Tokyo"
