@@ -191,7 +191,7 @@ proxies:
     server: 46.20.109.127
     port: 18388
     cipher: "2022-blake3-aes-256-gcm"
-    password: "3RMlobTdMoSWAMcuCR3DfdqaCTzNHds9JIBdIYajgkE="
+    password: "8XYolLheTlxQMtzcf5X8FSJ4RNTlyVolxLQOcnVQ-1I="
     udp: true
   - name: "HK-HY2"
     type: hysteria2
