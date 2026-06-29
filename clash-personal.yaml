@@ -1,12 +1,12 @@
 # ============================================================
-# Mihomo 完整配置 v10 — 大陆环境 (福建福州) 金融直连可选版
+# Mihomo 完整配置 v10 -- 修正版 (福建福州)
 # ============================================================
 
 mode: rule
 unified-delay: true
 tcp-concurrent: true
 log-level: info
-# ========== 规则集定义 ==========
+
 rule-providers:
   reject:
     type: http
@@ -164,7 +164,7 @@ rule-providers:
     format: mrs
     path: ./rule_providers/fake-ip-filter.mrs
     url: "https://cdn.jsdelivr.net/gh/DustinWin/ruleset_geodata@mihomo-ruleset/fakeip-filter.mrs"
-# ========== 代理提供者 ==========
+
 proxy-providers:
   provider1:
     type: http
@@ -184,7 +184,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 900
-# ========== 静态代理（手动添加） ==========
+
 proxies:
   - name: "HK-SS2022"
     type: ss
@@ -200,45 +200,50 @@ proxies:
     password: "u2HmFoSTnaYyUZBF"
     skip-cert-verify: true
     udp: true
-  - name: "JP-Tokyo"
+  - name: "Tokyo-VLESS"
     type: vless
     server: tokyo.nan77a.com
     port: 443
-    uuid: "594b7e7e-9452-4902-a15d-59a96ee8df5d"
-    tls: true
+    uuid: 4e3550bf-cd7c-4ac6-9add-a4f425eee098
     network: ws
+    tls: true
+    servername: tokyo.nan77a.com
     ws-opts:
       path: "/"
-    client-fingerprint: chrome
     udp: true
-# ========== 策略组 ==========
+
 proxy-groups:
   - name: 选择节点
     type: select
-    include-all: true
+    use: [provider1, provider2]
+    proxies:
+      - HK-SS2022
+      - HK-HY2
+      - Tokyo-VLESS
+      - DIRECT
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Server.png"
   - name: AIGPT
     type: select
+    use: [provider1, provider2]
     proxies:
       - 选择节点
-    include-all: true
     filter: "(?i)SG|新|TW|台|JP|日|US|美"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/AI.png"
   - name: Bahamut
     type: select
+    use: [provider1, provider2]
     proxies:
       - 选择节点
-    include-all: true
     filter: "(?i)HK|港|TW|台"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Bahamut_i.png"
   - name: Netflix&Disney
     type: select
+    use: [provider1, provider2]
     proxies:
       - HK-SS2022
       - HK-HY2
-      - JP-Tokyo
+      - Tokyo-VLESS
       - 选择节点
-    include-all: true
     filter: "(?i)HK|港|TW|台|US|美|JP|日|SG|新"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Netflix_b.png"
   - name: 金融券商
@@ -249,18 +254,18 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Bank.png"
   - name: Steam login
     type: select
+    use: [provider1, provider2]
     proxies:
       - DIRECT
       - 选择节点
-    include-all: true
     filter: "阿|土|俄|印"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Steam.png"
   - name: 港卡直连
     type: select
+    use: [provider1, provider2]
     proxies:
       - DIRECT
       - 选择节点
-    include-all: true
     filter: "(?i)HK|港|TW|台|US|美|JP|日|SG|新"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Bank.png"
   - name: 国内网站
@@ -272,7 +277,6 @@ proxy-groups:
   - name: 拦截广告
     type: select
     proxies:
-      - PASS
       - REJECT
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/AdblockPlus_2.png"
   - name: 漏网之鱼
@@ -281,7 +285,7 @@ proxy-groups:
       - 选择节点
       - DIRECT
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Dolphin.png"
-# ========== 嗅探器 ==========
+
 sniffer:
   enable: true
   parse-pure-ip: true
@@ -293,7 +297,7 @@ sniffer:
       ports: [443, 853, 8443]
     QUIC:
       ports: [443, 853, 8443]
-# ========== DNS防泄漏系统 (大陆特供 Fake-IP 版) ==========
+
 dns:
   enable: true
   ipv6: false
@@ -303,8 +307,8 @@ dns:
   respect-rules: true
   direct-nameserver-follow-policy: true
   hijack:
-    - 'any:53'
-    - 'tcp://any:53'
+    - any:53
+    - tcp://any:53
   default-nameserver:
     - 223.5.5.5:53
     - 119.29.29.29:53
@@ -324,7 +328,7 @@ dns:
       - 0.0.0.0/32
   fake-ip-filter: ['rule-set:fakeip-filter']
   listen: 0.0.0.0:1053
-# ========== 统一规则路由表 (按中国大陆网络逻辑排序) ==========
+
 rules:
   - RULE-SET,Leakblock,选择节点
   - RULE-SET,Httpdns,REJECT
@@ -430,7 +434,7 @@ rules:
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,漏网之鱼
-# ========== 核心及插件基础配置 ==========
+
 cmfa-plugin:
   mode: tproxy
   dashboard: zashboard
