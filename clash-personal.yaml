@@ -1,12 +1,12 @@
 # ============================================================
-# Mihomo 完整配置 v10 -- 修正版 (福建福州)
+# Mihomo 完整配置 v10 — 双订阅版 (福建福州)
 # ============================================================
 
 mode: rule
 unified-delay: true
 tcp-concurrent: true
 log-level: info
-
+# ========== 规则集定义 ==========
 rule-providers:
   reject:
     type: http
@@ -164,7 +164,7 @@ rule-providers:
     format: mrs
     path: ./rule_providers/fake-ip-filter.mrs
     url: "https://cdn.jsdelivr.net/gh/DustinWin/ruleset_geodata@mihomo-ruleset/fakeip-filter.mrs"
-
+# ========== 代理提供者 ==========
 proxy-providers:
   provider1:
     type: http
@@ -173,7 +173,7 @@ proxy-providers:
     interval: 3600
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.qq.com
       interval: 900
   provider2:
     type: http
@@ -182,9 +182,9 @@ proxy-providers:
     interval: 3600
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.qq.com
       interval: 900
-
+# ========== 静态代理（手动添加） ==========
 proxies:
   - name: "HK-SS2022"
     type: ss
@@ -211,7 +211,19 @@ proxies:
     ws-opts:
       path: "/"
     udp: true
-
+  - name: Tokyo-Singbox
+    type: vless
+    server: 18.183.175.18
+    port: 54321
+    uuid: a62efa2b-167f-4a7d-9cb9-9908a262fa17
+    flow: xtls-rprx-vision
+    tls: true
+    servername: yahoo.co.jp
+    reality-opts:
+      public-key: zdcAA7BaVstQca1ShWtk0IjCKOL_2yH_YYR_BBVq81A
+      short-id: 25e5166a125a3edb
+    client-fingerprint: chrome # ✅ 已修正
+# ========== 策略组 ==========
 proxy-groups:
   - name: 选择节点
     type: select
@@ -220,6 +232,7 @@ proxy-groups:
       - HK-SS2022
       - HK-HY2
       - Tokyo-VLESS
+      - Tokyo-Singbox # ✅ 新增，使其出现在此组
       - DIRECT
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Server.png"
   - name: AIGPT
@@ -243,6 +256,7 @@ proxy-groups:
       - HK-SS2022
       - HK-HY2
       - Tokyo-VLESS
+      - Tokyo-Singbox # ✅ 新增，使其出现在此组
       - 选择节点
     filter: "(?i)HK|港|TW|台|US|美|JP|日|SG|新"
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Netflix_b.png"
@@ -285,7 +299,7 @@ proxy-groups:
       - 选择节点
       - DIRECT
     icon: "https://cdn.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Dolphin.png"
-
+# ========== 嗅探器 ==========
 sniffer:
   enable: true
   parse-pure-ip: true
@@ -297,7 +311,7 @@ sniffer:
       ports: [443, 853, 8443]
     QUIC:
       ports: [443, 853, 8443]
-
+# ========== DNS ==========
 dns:
   enable: true
   ipv6: false
@@ -328,7 +342,7 @@ dns:
       - 0.0.0.0/32
   fake-ip-filter: ['rule-set:fakeip-filter']
   listen: 0.0.0.0:1053
-
+# ========== 规则 ==========
 rules:
   - RULE-SET,Leakblock,选择节点
   - RULE-SET,Httpdns,REJECT
@@ -434,7 +448,7 @@ rules:
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,漏网之鱼
-
+# ========== 核心配置 ==========
 cmfa-plugin:
   mode: tproxy
   dashboard: zashboard
